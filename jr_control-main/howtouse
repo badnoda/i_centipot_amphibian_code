@@ -1,0 +1,17 @@
+ターミナル①
+roscore
+
+ターミナル②
+rosrun joy joy_node _dev:=/dev/input/js1
+
+ターミナル③
+rosrun rosserial_python serial_node.py tcp
+
+ターミナル④
+rosrun jr_control scripts/joycon_ope.py
+
+ターミナル⑤
+cd ~/catkin_ws/src/jr_control/rosbag             (モータ情報の保存先の指定)
+rosbag record -a -O test.bag                     (保存の開始)
+ctrl-C                                           (保存の終了)
+rostopic echo -b test.bag -p /sensor > test.csv  (csvとして出力)
